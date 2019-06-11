@@ -37,6 +37,7 @@ export class PuzzleComponent implements OnInit {
   public count_limit: number = 20;
   public min_count: number = 0;
   public min_tmp_previous: number;
+  public min_555555: number;
 
   constructor(private ss: SolverService) { }
 
