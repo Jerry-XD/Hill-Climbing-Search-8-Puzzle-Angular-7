@@ -1,0 +1,25 @@
+.tile{
+    background: rgb(4, 0, 63);
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+    border-color: white;
+  }
+  .number{
+    color:white;
+    text-align: center;
+    margin-top: 30%;
+  }
+  .zero{
+    background: transparent;
+    width: 100px;
+    height: 100px;
+    border-color: white;
+    margin-bottom: -1000px;
+  }
+  .z-number{
+    color:transparent;
+    text-align: center;
+    margin-top: 30%;
+  }
+  

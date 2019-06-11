@@ -1,0 +1,74 @@
+<mat-toolbar class="mat-elevation-z3" color="primary">
+  <span>8-Puzzle Solve By Hill-Climbing Search Algorithm</span>
+</mat-toolbar>
+<div class="container">
+  <!--
+  <h3 style="text-align: center">8-Puzzle Solve</h3>
+  <h5 style="text-align: center">By Hill-Climbing Search Algorithm</h5>
+  -->
+  <div class="row" style="margin-top:14px">
+    <div class="col-sm">
+      <h5 style="text-align: center">Stage ปัจจุบัน</h5>
+      <h5 style="text-align: center">ค่า Heuristic = {{this.tiles_state_h}}</h5>
+      <div class="board" style="text-align: center">
+        <div class="tile" *ngFor="let s of tiles_state">
+          <app-tile (click)="onClick(s, this.tiles_state)" [number]="s"></app-tile>
+        </div>
+      </div>
+      <br>
+      <div style="text-align: center">
+        <!--
+        <button type="button" class="btn btn-primary" (click)="solvePuzzle()">
+          เทส
+        </button>&nbsp;
+        -->
+        <button mat-raised-button color="warn" (click)="shuffle()" [disabled]="this.status == 'running' || this.random == false">
+          สุ่ม
+        </button>&nbsp;
+        <button mat-raised-button color="primary" (click)="startProgram()" [disabled]="this.status == 'running' || this.tiles_state_h == 0">เริ่ม</button>
+        &nbsp;
+        <button mat-raised-button color="warn" (click)="clearInterval()" [disabled]="this.status == 'idle'">หยุด</button>
+        &nbsp;
+        <button mat-raised-button color="accent" (click)="resetTile(this.tiles_state)" [disabled]="this.status == 'running'">รีเซ็ต</button>
+        <!--
+        <button type="button" class="btn btn-danger" (click)="stopProgram()">
+          รีเซ็ต
+        </button>
+        -->
+        <br>
+        <mat-slider min="1" max="1000" step="1" [(ngModel)]="this.interval_value" [disabled]="this.status == 'running'"></mat-slider>
+        <p>หน่วงเวลา = {{this.interval_value}} ms</p>
+        <div class="row">
+          <div class="col-sm" style="text-align: center">
+            <mat-slide-toggle class="example-margin" color="accent" [(ngModel)]="this.random" [disabled]="this.status == 'running'">
+            </mat-slide-toggle>
+            &nbsp;<a>สุ่ม</a>
+          </div>
+          <div class="col-sm" style="text-align: center">
+            <mat-slide-toggle class="example-margin" color="accent" [(ngModel)]="this.limit" [disabled]="this.status == 'running'">
+            </mat-slide-toggle>
+            &nbsp;<a>จำกัดรอบการทำงาน</a>
+          </div>
+          <div class="col-sm" style="text-align: center">
+            <mat-form-field class="example-margin">
+              <input matInput type="number" placeholder="จำนวนรอบที่จำกัด" [(ngModel)]="this.count_limit" [disabled]="this.status == 'running' || this.limit == false">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <h5 style="text-align: center">Stage เป้าหมาย</h5>
+      <h5 style="text-align: center">ค่า Heuristic = 0</h5>
+      <div class="board" style="text-align: center">
+        <div class="tile" *ngFor="let s of tiles_goal_state">
+          <app-tile (click)="onClick(s, this.tiles_goal_state)" [number]="s"></app-tile>
+        </div>
+      </div>
+      <br>
+      <div style="text-align: center">
+        <button mat-raised-button color="accent" (click)="resetTile(this.tiles_goal_state)" [disabled]="this.status == 'running'">รีเซ็ต</button>
+      </div>
+    </div>
+  </div>
+</div>
